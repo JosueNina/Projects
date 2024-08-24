@@ -1,0 +1,136 @@
+# Angular specific ignore patterns
+
+# Node modules
+node_modules/
+
+# Angular build artifacts
+dist/
+out-tsc/
+build/
+tmp/
+
+# Temporary files and folders
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.pnpm-debug.log*
+
+# Compiled source files
+*.js
+*.js.map
+*.tsbuildinfo
+
+# Logs and Reports
+logs/
+*.log
+report/
+pids/
+*.pid
+*.seed
+*.pid.lock
+*.xml
+*.csv
+*.dat
+*.out
+*.tar.gz
+*.log.gz
+*.zip
+*.gz
+
+# IDE files
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-project
+*.sublime-workspace
+.vscode/
+*.code-workspace
+
+# Cache files
+.cache/
+.npm/
+.pnpm-store/
+.eslintcache
+.cache-loader/
+.sass-cache/
+.parcel-cache/
+
+# Mac specific files
+.DS_Store
+
+# Windows specific files
+Thumbs.db
+ehthumbs.db
+
+# Environment Variables
+.env
+.env.*
+*.local
+
+# Dependency directories
+jspm_packages/
+typings/
+typings.json
+
+# Webstorm
+/.idea
+/.nvm
+/.npm
+/.node-repl-history
+*.log
+*.gz
+.yarn-integrity
+.pnp.*
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Firebase cache files
+.firebase/
+
+# Angular Service Worker cache files
+ngsw-worker.js
+ngsw.json
+ngsw-state/
+
+# Angular CLI
+.angular/
+
+# Angular build artifacts and caching
+.angular/cache/
+.angular-build/
+
+# Angular Universal
+/server/
+
+# Browser cache and session data
+.cache/
+.history/
+local_storage/
+session_storage/
+
+# Test logs and results
+/test-results/
+test-report/
+cypress/screenshots/
+cypress/videos/
+cypress/reports/
+testem.log
+
+# Protractor log and temp files
+protractor-results/*
+.protractor/
+
+# VS Code workspace specific settings
+.vscode/
+
+# Dependency directories and lockfiles
+bower_components/
+node_modules/
+jspm_packages/
+.typings/
