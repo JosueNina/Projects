@@ -19,6 +19,7 @@ namespace ShopVerseApp.Repositories
         }
         public Task<Product> CreateAsync(CreateProductDto productDto)
         {
+
             throw new NotImplementedException();
         }
 
@@ -33,9 +34,10 @@ namespace ShopVerseApp.Repositories
             return products;
         }
 
-        public Task<Product> GetByIdAsync(int id)
+        public async Task<Product?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var product = await _context.Products.FirstOrDefaultAsync(e => e.ProductId == id);
+            return product;
         }
 
         public Task<Product> UpdateAsync(UpdateProductDto productDto, int id)

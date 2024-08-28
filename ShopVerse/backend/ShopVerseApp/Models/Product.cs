@@ -17,6 +17,6 @@ namespace ShopVerseApp.Models
         [Required]
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
     }
 }

@@ -17,9 +17,10 @@ namespace ShopVerseApp.Services
         {
             _productRepo = productRepo;
         }
-        public Task<Product> CreateProductAsync(CreateProductDto productDto)
+        public async Task<Product> CreateProductAsync(CreateProductDto productDto)
         {
-            throw new NotImplementedException();
+            var product = await _productRepo.CreateAsync(productDto);
+            return product;
         }
 
         public Task<Product> DeleteProductAsync(int id)
@@ -33,9 +34,10 @@ namespace ShopVerseApp.Services
             return products;
         }
 
-        public Task<Product> GetProductByIdAsync(int id)
+        public async Task<Product?> GetProductByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var product = await _productRepo.GetByIdAsync(id);
+            return product;
         }
 
         public Task<Product> UpdateProductAsync(UpdateProductDto productDto, int id)
