@@ -33,17 +33,17 @@ export class LoginComponent {
     private form: FormBuilder
   ) {
     this.loginForm = this.form.group({
-      username: new FormControl('', Validators.required),
+      userName: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
   }
 
   submit() {
     let user: UserLogin = {
-      userName: this.loginForm.value.username,
+      userName: this.loginForm.value.userName,
       password: this.loginForm.value.password,
     };
-    /* this._loginService.getProducts(user).subscribe({
+    this._loginService.getProducts(user).subscribe({
       next: (res) => {
         console.log(res);
         this._router.navigate(['/dashboard']);
@@ -51,7 +51,7 @@ export class LoginComponent {
       error: (err) => {
         console.log(err.error, err);
       },
-    }); */
-    this._router.navigate(['/dashboard']);
+    });
+    //this._router.navigate(['/dashboard']);
   }
 }
