@@ -44,6 +44,18 @@ builder.Services.AddSwaggerGen(option =>
     });
 });
 
+var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins(allowedOrigins) // Origen de tu aplicación Angular
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
 //Controllers
 builder.Services.AddControllers();
 
@@ -103,6 +115,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowSpecificOrigin");
 app.UseAuthentication();
 app.UseAuthorization();
 
