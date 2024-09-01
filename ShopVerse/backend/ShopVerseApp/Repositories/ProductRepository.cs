@@ -10,39 +10,12 @@ using ShopVerseApp.Repositories.Interfaces;
 
 namespace ShopVerseApp.Repositories
 {
-    public class ProductRepository : IProductRepository
+    public class ProductRepository : Repository<Product>, IProductRepository
     {
         private readonly ApplicationDbContext _context;
-        public ProductRepository(ApplicationDbContext context)
+        public ProductRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
-        }
-        public Task<Product> CreateAsync(CreateProductDto productDto)
-        {
-
-            throw new NotImplementedException();
-        }
-
-        public Task<Product> DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<List<Product>> GetAllAsync()
-        {
-            var products = await _context.Products.ToListAsync();
-            return products;
-        }
-
-        public async Task<Product?> GetByIdAsync(int id)
-        {
-            var product = await _context.Products.FirstOrDefaultAsync(e => e.ProductId == id);
-            return product;
-        }
-
-        public Task<Product> UpdateAsync(UpdateProductDto productDto, int id)
-        {
-            throw new NotImplementedException();
         }
     }
 }

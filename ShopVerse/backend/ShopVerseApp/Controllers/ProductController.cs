@@ -20,7 +20,6 @@ namespace ShopVerseApp.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> GetAll()
         {
             var products = await _productService.GetAllProductsAsync();
@@ -40,12 +39,25 @@ namespace ShopVerseApp.Controllers
 
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> Create([FromBody] CreateProductDto productDto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             var product = await _productService.CreateProductAsync(productDto);
             return Ok(product);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update([FromBody] UpdateProductDto productDto, [FromRoute] int id)
+        {
+            var product = await _productService.UpdateProductAsync(productDto, id);
+            return Ok(product);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            var isDeleted = await _productService.DeleteProductAsync(id);
+            return Ok(isDeleted);
         }
     }
 }

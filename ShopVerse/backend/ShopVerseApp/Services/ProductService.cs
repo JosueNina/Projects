@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using ShopVerseApp.Data;
 using ShopVerseApp.DTOs.Product;
 using ShopVerseApp.Models;
@@ -13,24 +15,32 @@ namespace ShopVerseApp.Services
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepo;
-        public ProductService(IProductRepository productRepo)
+        private readonly IMapper _mapper;
+        public ProductService(IProductRepository productRepo, IMapper mapper)
         {
             _productRepo = productRepo;
+            _mapper = mapper;
         }
         public async Task<Product> CreateProductAsync(CreateProductDto productDto)
         {
-            var product = await _productRepo.CreateAsync(productDto);
+            var product = await _productRepo.CreateAsync(_mapper.Map<Product>(productDto));
             return product;
         }
 
-        public Task<Product> DeleteProductAsync(int id)
+        public async Task<bool> DeleteProductAsync(int id)
         {
-            throw new NotImplementedException();
+            var product = await _productRepo.GetByIdAsync(id);
+            if (product == null)
+            {
+                return false;
+            }
+            var isDeleted = await _productRepo.DeleteAsync(product);
+            return isDeleted;
         }
 
         public async Task<List<Product>> GetAllProductsAsync()
         {
-            var products = await _productRepo.GetAllAsync();
+            var products = await _productRepo.GetMany().ToListAsync();
             return products;
         }
 
@@ -40,9 +50,16 @@ namespace ShopVerseApp.Services
             return product;
         }
 
-        public Task<Product> UpdateProductAsync(UpdateProductDto productDto, int id)
+        public async Task<Product?> UpdateProductAsync(UpdateProductDto productDto, int id)
         {
-            throw new NotImplementedException();
+            var product = await _productRepo.GetByIdAsync(id);
+            if (product == null) return null;
+            //_mapper.Map(product, productDto);
+            product.Description = productDto.Description;
+            product.Price = productDto.Price;
+            product.ProductName = productDto.ProductName;
+            await _productRepo.UpdateAsync(product);
+            return product;
         }
     }
 }
