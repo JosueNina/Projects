@@ -43,7 +43,7 @@ export class LoginComponent {
       userName: this.loginForm.value.userName,
       password: this.loginForm.value.password,
     };
-    this._loginService.getProducts(user).subscribe({
+    /* this._loginService.login(user).subscribe({
       next: (res) => {
         console.log(res);
         this._router.navigate(['/dashboard']);
@@ -51,7 +51,7 @@ export class LoginComponent {
       error: (err) => {
         console.log(err.error, err);
       },
-    });
-    //this._router.navigate(['/dashboard']);
+    }); */
+    this._router.navigate(['/dashboard']);
   }
 }

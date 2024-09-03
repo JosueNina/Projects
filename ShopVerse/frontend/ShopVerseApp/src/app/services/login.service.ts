@@ -10,7 +10,7 @@ export class LoginService {
   private baseUrl: string = 'http://localhost:5227/api/Account/login';
   constructor(private _httpClient: HttpClient) {}
 
-  public getProducts(data: UserLogin): Observable<User> {
+  public login(data: UserLogin): Observable<User> {
     return this._httpClient.post<User>(this.baseUrl, data);
   }
 }
