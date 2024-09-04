@@ -1,7 +1,5 @@
-<a [routerLink]="['/products', product.productId]"
-    class="block rounded border-black border-8 p-2 h-80 w-80 no-underline hover:no-underline">
-    <img class="w-32 h-32 object-cover rounded-t-lg"
-        src="https://media.product.which.co.uk/prod/images/ar_2to1_900x450/22a475e555d7-best-laptop-deals.webp">
+<a [routerLink]="['/products', product.productId]" class="block rounded border-gray-400 border-2 p-2 h-80 w-80">
+    <img class="w-32 h-32 object-cover rounded-t-lg" [src]="product.imageUrl">
     <h2 class="text-lg font-bold mt-2 text-white">{{product.productName}}</h2>
     <p class="text-lg font-semibold mt-2 text-white">{{product.description}}</p>
     <h3 class="text-red-600 mt-1">{{product.price | currency}}</h3>
