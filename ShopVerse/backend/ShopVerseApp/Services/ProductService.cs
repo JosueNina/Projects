@@ -58,6 +58,10 @@ namespace ShopVerseApp.Services
             product.Description = productDto.Description;
             product.Price = productDto.Price;
             product.ProductName = productDto.ProductName;
+            product.Category = productDto.Category;
+            product.ImageUrl = productDto.ImageUrl;
+            product.SKU = productDto.SKU;
+            product.Stock = productDto.Stock;
             await _productRepo.UpdateAsync(product);
             return product;
         }

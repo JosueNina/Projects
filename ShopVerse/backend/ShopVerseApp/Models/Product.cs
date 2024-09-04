@@ -17,6 +17,12 @@ namespace ShopVerseApp.Models
         [Required]
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
+        [Required]
+        public int Stock { get; set; }
+        public string? Category { get; set; }
+        public string? ImageUrl { get; set; }
+        [Required]
+        public string SKU { get; set; } = string.Empty;
         public DateTime CreatedDate { get; set; } = DateTime.Now;
     }
 }

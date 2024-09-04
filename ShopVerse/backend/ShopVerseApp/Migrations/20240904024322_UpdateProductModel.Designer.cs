@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShopVerseApp.Data;
 
@@ -11,9 +12,11 @@ using ShopVerseApp.Data;
 namespace ShopVerseApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240904024322_UpdateProductModel")]
+    partial class UpdateProductModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,6 +50,20 @@ namespace ShopVerseApp.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "744d1da2-b4f4-4844-9910-3d046a4456b5",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "8771f063-80f5-4bbe-a0b1-7410a5bd649a",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
