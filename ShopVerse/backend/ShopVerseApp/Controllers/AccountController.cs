@@ -76,13 +76,15 @@ namespace ShopVerseApp.Controllers
             {
                 return Unauthorized("Invalid UserName!");
             }
+            var roles = await _userManager.GetRolesAsync(user);
             var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
             if (!result.Succeeded) return Unauthorized("Username not found and/or password incorret");
             return Ok(new NewUserDto
             {
                 UserName = user.UserName ?? "",
                 Email = user.Email ?? "",
-                Token = _tokenService.CreateToken(user)
+                Token = _tokenService.CreateToken(user),
+                Roles = roles,
             });
         }
     }
