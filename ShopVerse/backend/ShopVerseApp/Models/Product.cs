@@ -24,5 +24,8 @@ namespace ShopVerseApp.Models
         [Required]
         public string SKU { get; set; } = string.Empty;
         public DateTime CreatedDate { get; set; } = DateTime.Now;
+
+        //Relationship
+        public virtual ICollection<OrderProduct> OrderProducts { get; set; } = new List<OrderProduct>();
     }
 }
