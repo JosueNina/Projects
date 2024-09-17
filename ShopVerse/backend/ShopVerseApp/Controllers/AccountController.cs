@@ -18,11 +18,13 @@ namespace ShopVerseApp.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ITokenService _tokenService;
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService)
+        private readonly IIdentityService _identityService;
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService, IIdentityService identityService)
         {
             _userManager = userManager;
             _tokenService = tokenService;
             _signInManager = signInManager;
+            _identityService = identityService;
         }
 
         [HttpPost("register")]
@@ -71,7 +73,13 @@ namespace ShopVerseApp.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var user = await _userManager.Users.FirstOrDefaultAsync(e => e.UserName == loginDto.UserName);
+            var response = await _identityService.Login(loginDto);
+            if (!response.Sucess)
+            {
+                return Unauthorized(response);
+            }
+            return Ok(response);
+            /* var user = await _userManager.Users.FirstOrDefaultAsync(e => e.UserName == loginDto.UserName);
             if (user == null)
             {
                 return Unauthorized("Invalid UserName!");
@@ -85,7 +93,7 @@ namespace ShopVerseApp.Controllers
                 Email = user.Email ?? "",
                 Token = _tokenService.CreateToken(user),
                 Roles = roles,
-            });
+            }); */
         }
     }
 }

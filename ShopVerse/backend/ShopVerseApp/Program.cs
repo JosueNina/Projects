@@ -98,9 +98,15 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddAuthorization();
 
 //
+//Repositories
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderProductRepository, OrderProductRepository>();
+builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
+//Services
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IIdentityService, IdentityService>();
 
 //
 builder.Services.AddAutoMapper(typeof(Program));
